@@ -1,0 +1,33 @@
+h1 {
+    color: #777777;
+}
+
+.wmd-panel{
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.comment-reply{
+    display:none;
+}
+
+.minus {
+    border:none;
+    color:#fff;
+    background-color:purple;
+    height:30px;
+    width:30px;
+}
+.plus {
+    border:none;
+    color:#fff;
+    background-color:purple;
+    height:30px;
+    width:30px;
+}
+.qty {
+    border:1px solid purple;
+    color:purple;
+    height:30px;
+     
+}

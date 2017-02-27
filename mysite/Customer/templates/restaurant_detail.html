@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block head_Restaurant %}
+{{ instance.Restaurant }} | {{ block.super }}
+{% endblock head_Restaurant %}
+
+
+ {% block restaurant_detail_link %}
+  <li><a href='{{ instance.get_absolute_url }}'>{{ instance.Restaurant }}</a></li>
+  {% endblock %}
+
+
+
+{% block content %}
+<div class='col-sm-6 col-sm-offset-3'>
+    {% if instance.Image %}
+    <img src='{{ instance.Image.url }}' class='img-responsive' />
+    {% endif %}
+<h1>{{ Restaurant }}</h1>
+
+<!-- {% if instance.read_time|time:"i" <= "01" %} < 1 minute {% else %}{{ instance.read_time|time:"i" }} minutes {% endif %} -->
+
+
+
+{% if instance.user.get_username %}
+<p>Owner: {{ instance.user.username }}</p>
+
+
+
+
+
+
+<div class='row'>
+<div class='col-sm-12 '>
+
+
+
+    <hr/>
+    <br/>
+
+    <div>
+
+        <p class='lead'>Menus</p>
+        
+        
+        
+       
+        
+        <hr/>
+        {% for menu in instance.menu_restaurant.all %}
+
+        <blockquote>
+          <p>{{ menu.Menu }}</p>
+         
+          <div class='menu-reply'>
+              
+              {% for dish in menu.dish_menu.all %}
+              <form class="nomargin" method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
+                <blockquote>
+                <p>{{ dish.Dish }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {{ dish.Price }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type='hidden' name='menu_id' value='{{ menu.id }}' />
+                  <input type='submit' value='Add'  class='btn btn-default' />  </p>
+                  
+                </blockquote>
+              </form>
+             {% endfor %}
+                  
+             
+            <!--<form class="nomargin" method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
+                
+                
+            <input type='hidden' name='restaurant_name' value='{{ instance.Restaurant }}' />
+                <input type='hidden' name='menu_id' value='{{ menu.id }}' />
+                
+                <input type='submit' value='Add Dish' name='Dish1' class='btn btn-default' />
+                <div class="quantity">
+  <input class="minus" type="button" value="-">
+  <input   class="input-text qty text" value=0 size="4" />
+  <input class="plus" type="button" value="+">
+</div>
+            </form>-->
+            
+        
+        
+        </div>
+
+        </blockquote>
+
+        <hr/>
+        {% endfor %}
+    </div>
+
+{% endif %}
+
+
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+        $('.quantity').on('click', '.plus', function(e) {
+            $input = $(this).prev('input.qty');
+            var val = parseInt($input.val());
+            $input.val( val+1 ).change();
+        });
+ 
+        $('.quantity').on('click', '.minus', 
+            function(e) {
+            $input = $(this).next('input.qty');
+            var val = parseInt($input.val());
+            if (val > 0) {
+                $input.val( val-1 ).change();
+            } 
+        });
+    });
+    </script>
+
+
+{% endblock content %}

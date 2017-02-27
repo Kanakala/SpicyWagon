@@ -1,0 +1,956 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>Orders</title>
+            <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    
+    
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href='{%static "css/materialize.css"%}' type="text/css" rel="stylesheet" media=	"screen,projection"/>
+  <link href='{%static "css/style.css"%}' type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href='{%static "css/vertical-timeline-style.css"%}'/>
+  <link rel="stylesheet" href='{%static "css/animations.css"%}'/>
+    
+	
+
+	{% if instance.id %}
+	
+
+    <style>
+    
+	
+	
+    #fixedContainer
+{
+  position: fixed;
+  width: 600px;
+  height: 200px;
+  left: 83%;
+  top: 30%;
+  
+  margin-left: -300px; /*half the width*/
+            }
+			
+			
+	#fixedContainer p
+{
+  position: fixed;
+  top:37%;
+  width:30%;
+  height: 30%;
+  overflow:auto;
+ 
+  
+
+}
+			
+	#fixed1Container
+{
+  position: absolute;
+  width: 37%;
+  height: 160px;
+  left: 87%;
+  top: 15%;
+  margin-left: -300px; /*half the width*/
+            }
+			
+
+			
+		.car{
+			 position: absolute;
+			height: 30%;
+			width: 100%;
+			}
+	.car.card.small
+		{
+			border-radius: 10px;
+		  height:200px;
+		}
+
+		
+	#rest_img
+		{
+			border-radius: 5px;
+			position: absolute;
+			height: 80%;
+			width: 40%;
+			left: 5%
+		}
+		
+	#rest_name
+		{
+			position: absolute;
+			font-size: 22px;
+			left: 55%
+		}
+		
+	#rest_area
+		{
+			position: absolute;
+			font-size: 15px;
+			top:30%;
+			left: 55%
+		}
+		
+		
+		.car1{
+			 position: relative;
+			 border-radius: 5px;
+			height: 30%;
+			width: 45%;
+			
+			}
+	.car1.card1.small1
+		{
+		
+		  border-radius: 5px;
+		  height:200px;
+		  margin-right: 5%;
+		  margin-bottom: 5%;
+		  width: 40%;
+		}
+		
+	.card1 .card-action1 {
+  position: relative;
+  background-color: inherit;
+  top: 65%;
+  border-top: 1px solid rgba(160, 160, 160, 0.2);
+  padding: 20px;
+}
+
+		
+	#rest_img1
+		{
+			position: absolute;
+			top: 0%;
+			height: 70%;
+			width: 100%;
+			
+		}
+		
+	
+		
+	#dish_name
+		{
+			position: absolute;
+			font-size: 13px;
+			top:75%;
+			left: 15%
+		}
+		
+	#rupee
+		{
+			position: absolute;
+			font-size: 13px;
+			top:88%;
+			left: 5%
+		}
+		
+	#dish_price
+		{
+			position: absolute;
+			font-size: 13px;
+			top:88%;
+			left: 10%
+		}
+		
+
+::-webkit-input-placeholder {
+  color: white;
+}
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: white;
+}
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: white;
+}
+
+:-ms-input-placeholder {
+  color: white;
+}
+
+		
+
+		
+
+		
+	.material-icons {
+  text-rendering: optimizeLegibility;
+  -webkit-font-feature-settings: 'liga';
+     -moz-font-feature-settings: 'liga';
+          font-feature-settings: 'liga';
+}
+
+		#material-icons1
+		{
+			position: absolute;
+			top:73%;
+			left: 4%
+		}
+		
+		#minus
+		{
+			position: absolute;
+			top:88%;
+			left: 72%
+		}
+		
+		#add
+		{
+			position: absolute;
+			top:1%;
+			left: 88%
+		}
+		
+		
+		
+		
+		
+		
+
+	
+		
+	
+
+	
+		
+		
+        
+ @media only screen and (max-width: 786px){
+ #fixedContainer{ display: none; } 
+ #menu{ display:none;}
+ .car{
+			 position: absolute;
+			height: 30%;
+			width: 100%;
+			}
+	.car.card.small
+		{
+		  height:170px;
+		  width:270%;
+		}
+
+	
+	
+	
+	
+	
+  }
+    </style>
+    
+    
+   <style>
+
+
+@media (min-width: 992px) {
+.col-md-3 {
+    float: left;
+  }
+  .col-md-3 {
+    width: 50%;
+  }
+  }
+  
+  </style>
+  
+  
+
+ 
+  
+  
+</head>
+    <body class="white ">
+           <div class="navbar-fixed">
+               <nav class="white" role="navigation">
+                   <div class="nav-wrapper ">
+                       <a href="#" class="brand-logo">SpicyWagon</a>
+                             
+      <nav>
+    <div class="nav-wrapper" id="123">
+      <form>
+        <div class="row input-field">
+		
+          <input class="col s12" id="search" type="search" placeholder="Search for restaurants, dishes and cuisines" required>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></i></label>
+          <i class="material-icons">close</i>
+		  
+        </div>
+      </form>
+    </div>
+  </nav>
+     </div>
+               </nav>
+        </div>
+        <br />
+        
+<div class="logo-out">
+        
+     
+        
+        
+            <div class="row">
+        <div  id="menu" class="col s2">
+            
+       
+            
+            
+            </div>
+            
+            
+            <div  class="col s6">
+		
+			<div class="filters">
+			<input class="with-gap red-text" name="filter" type="radio" id="test4" value="All" checked/>
+    <label for="test4">All</label>
+    <input class="with-gap red-text" name="filter" type="radio" id="test5" value="Madhapur" />
+    <label for="test5">Madhapur</label>
+	<input class="with-gap red-text" name="filter" type="radio" id="test6" value="Abids"/>
+    <label for="test6">Abids</label>
+ </div>
+		
+             <!--  Dynamic cards-->
+                <div id="dbg" >
+				
+				 </div>
+            
+            
+            </div>
+          
+            
+            
+            
+            
+            
+            
+           
+            <div id="fixedContainer" class="col s4">
+               <div class="row s12">
+                <div class="container">
+                          <div class="card small">
+                              <div class="card-title  teal lighten-5 center">Your Cart <hr></div>
+                              
+							
+						
+							  
+                                  <div class="card-action">
+                                      <div>
+                                      <h6 class="right">₹</h6>
+                                      <a href="#"><i class="material-icons grey-text left">add_circle</i></a>
+              <a href="#"><i class="material-icons grey-text left">indeterminate_check_box</i></a>
+            </div>
+                              </div>   
+                              
+                              
+                           </div>
+                 
+                    </div>
+                
+                </div>
+                </div>
+        </div>
+            
+			
+			
+               <div id="menu_modal" class="modal container">
+			  
+    <div class="modal-content ">
+	
+	<div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Logo</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="sass.html">Sass</a></li>
+          <li><a href="badges.html">Components</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+	 <div class="row">
+	 
+	 <div  id="menu" >
+	 
+	 
+            
+            <div class="row s12">
+            <br/><br/>
+                 <div>
+				 
+				 
+				 <div id="dcollapse">
+				 </div><!--
+                                         <div class="card-content">
+                                            <ul class="collapsible popout" data-collapsible="expandable">
+    <li>
+      <div class="collapsible-header"><i class="material-icons red-text">restaurant_menu</i>Recommended</div>
+    </li>
+    <li>
+      <div  class="collapsible-header"><i id="down" class="material-icons red-text">arrow_drop_down</i>Starters</div>
+	  
+      <div class="collapsible-body center"><span>Veg Starters</span></div>
+	  <div class="collapsible-body center"><span>Non-Veg Starters</span></div>
+    </li>
+     <li>
+      <div class="collapsible-header"><i class="material-icons red-text">arrow_drop_down</i>Main Course</div>
+      <div class="collapsible-body center"><span>Veg Main Course</span></div>
+	  <div class="collapsible-body center"><span>Non-Veg Main Course</span></div>
+	  <div class="collapsible-body center"><span>Dal</span></div>
+	  <div class="collapsible-body center"><span>Biryanis</span></div>
+	  <div class="collapsible-body center"><span>Indian Breads</span></div>
+    </li>
+	<li>
+      <div class="collapsible-header"><i class="material-icons red-text">room_service</i>Deserts</div>
+    </li>
+	<li>
+      <div class="collapsible-header"><i class="material-icons red-text">local_bar</i>Beverages</div>
+    </li>
+  </ul>
+                     
+                     
+                     </div>
+                     -->
+                </div>
+                
+            </div>
+            
+            
+            </div>
+	<div  id="mbg" class="col s9">
+	
+	   
+	
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	 <div id="fixed1Container" class="modal-content col s3">
+               <div class="row s12">
+                <div class="container">
+                          <div class="card small">
+                              <div class="card-title  teal lighten-5 center">Your Cart <hr></div>
+							  
+							  
+                              
+                                  <div class="card-action">
+                                      <div>
+                                      <h6 class="right">₹</h6>
+                                      <a href="#"><i class="material-icons grey-text left">add_circle</i></a>
+              <a href="#"><i class="material-icons grey-text left">indeterminate_check_box</i></a>
+            </div>
+                              </div>   
+                              
+                              
+                           </div>
+                 
+                    </div>
+                
+                </div>
+                </div></div>
+				</div>
+    <div class="modal-footer">
+
+    </div>
+	
+  </div>
+    </div>
+        
+            
+            
+            
+            
+            
+            
+        
+        
+     <!--  Scripts-->
+ 
+  <script src='{%static "js/materialize.js"%}'></script>
+  <script src='{%static "js/modernizr.min.js"%}'></script> 
+  <script src='{%static "js/main.js"%}'></script>
+        <script>
+        
+        
+  $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrain_width: false, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: false, // Displays dropdown below the button
+      alignment: 'right' // Displays dropdown with edge aligned to the left of button
+    }
+  );
+       
+		
+		</script>
+		
+		<script>
+		var i="All";
+  var el = $('#dbg');
+	    var HtmlData = 	LoadData();
+  el.html(HtmlData);
+  
+  var mi;
+
+  var mel = $('#mbg');
+	    var HtmlMData = LoadMData();
+  mel.html(HtmlMData);
+  
+  /*
+  function getSelectedChbox(frm) {
+  var selchbox = [];        
+  var inpfields = frm.getElementsByTagName('input');
+  var nr_inpfields = inpfields.length;
+  for(var i=0; i<nr_inpfields; i++) {
+    if(inpfields[i].type == 'checkbox' && inpfields[i].checked == true) selchbox.push(inpfields[i].value)
+  }
+  return selchbox;
+}
+
+document.getElementById('').onclick = function(){
+  var selchb = getSelectedChbox(this.form); 
+  */
+  $("input[name=filter]").on('change', function () {
+	var area = $(this).val();
+	i=area;
+	var HtmlData = 	LoadData();
+    el.html(HtmlData);
+  });
+  
+  
+  function compare(a, b) {
+    if (a.name< b.name)
+        return -1;
+    if (a.name > b.name)
+        return 1;
+    return 0;
+}
+
+  
+ 
+   function LoadData()
+    {
+     var dmJSON="/train_restaurant_json/{{instance.id}}";
+	 
+     var html = '<section id="cd-timeline" class="cd-container">' +  '<div >';
+		$.ajax({
+		  url: dmJSON,
+		  dataType: 'json',
+		  async: false,
+		  data: {},
+		  success: function(data) { 
+		  $.each(data.results, function(key, value) {  
+		  
+		  
+		
+		if(i=="All"){
+				  html += '<div class="cd-timeline-block">' + '<div class="cd-timeline-img cd-picture">' + '<img src="' +'{%static "img/cd-icon-location.svg"%}'+'" align="left"  alt="picture" />'+ '</div>' + '<div class="cd-timeline-content red-text ">'  + '<div class="cd-date">' + 'Jan 14'  + '</div>' + '<div class="cd-place">' + 'Hyderabad' +'</div>' + '</div>' +  '<a title="'+value.slug+'" class="rest_click" href="#menu_modal">' +  '<div class="car card small z-depth-5 t">' + '<br>' + '<img src="' + value.image_path + '" align="left"  id="rest_img" alt="avatar" />' + '<div id="rest_name">' + value.Restaurant + '</div>' + '<div id="rest_area">' + value.Area + "</div>" +  "</div>"+ '</a>' +  "</div>" +  '</div>' 
+                 }
+			else if(value.Area==i){
+				  html += '<div class="cd-timeline-block">' + '<div class="cd-timeline-img cd-picture">'  + '</div>' + '<a class="rest_click" href="#menu_modal">' + '<div class="car card small  z-depth-5 t">' + '<br>' + '<img src="' + value.image_path + '" align="left"  id="rest_img" alt="avatar" />' + '<div id="rest_name">' + value.Restaurant + '</div>' + '<div id="rest_area">' + value.Area + "</div>" +  "</div>"+ '</a>'  +  "</div>" + "</div>" 
+                 }
+				 
+				 
+				
+				
+				 
+			});
+                   
+		} 
+    });
+	
+	
+   return html;
+   }
+   
+
+   
+    $( ".rest_click" ).click(function() {
+    
+    var clickedValue = $(this).attr('title');
+mi=clickedValue;    
+var HtmlMData = LoadMData();
+    mel.html(HtmlMData);
+    
+});
+   
+	
+      function LoadMData()
+    {
+     var dmJSON='/dish_json/'+mi+'';
+     var html = '<div class="row s12"/>';
+		$.ajax({
+		  url: dmJSON,
+		  dataType: 'json',
+		  async: false,
+		  data: {},
+		  success: function(data) {
+		  $.each(data.results, function(key, value) {  
+		if(value.slug==mi){
+		var MenuList = value.MenuList;
+		//var MenuResultList = {};
+		//MenuResultList['Results'] = [];
+		//MenuResultList['Results'].push(MenuList);
+		//var MenuJson = JSON.stringify(MenuList);
+		
+		html += '<div class="row">'
+		html += '<div class="col s4">'  + '<ul class="collapsible popout" data-collapsible="accordion">'
+		
+		for(var i=0; i<MenuList.length; ++i){	
+		
+		
+		$.each(value.Menus, function(key7, value7) {
+		
+		
+		
+		if(value7.Menu==MenuList[i]){
+
+		if(value7.SubMenus!="null"){
+		
+		html +=   '<li>' + '<div class="collapsible-header">' + '<i class="material-icons red-text">' + 'arrow_drop_down' + '</i>' + value7.Menu + '</div>'  
+		
+		$.each(value7.SubMenus, function(key8, value8) {
+		
+			html += '<div class="collapsible-body center">' + '<span>' + value8.SubMenu + '</span>' + '</div>'
+			
+			});
+			
+			
+			html += '</li>'
+		
+		}
+		
+		else if(value7.SubMenus=="null"){
+		
+		
+		
+		html +=   '<li>' + '<div class="collapsible-header">' + '<i class="material-icons red-text">' + 'restaurant_menu' + '</i>' + value7.Menu + '</div>' + '</li>'  
+		
+		}
+		
+		}
+		
+		});
+		 
+		}html += '</ul>' +  '</div>'
+		
+		
+		
+		
+		$.each(value.Menus, function(key1, value1) { 
+
+		
+	
+		html+= '<div class="col s8">'
+		
+		if(value1.Menu=="Recommended"){
+		$.each(value1.Dishes, function(key2, value2) {
+		
+		{
+				  html +=  '<div class="car1 card1 small1 col-md-3 z-depth-5 t">' + '<br>' + '<img src="' + value2.image_path + '" align="left"  id="rest_img1" alt="avatar" />' +  '<div id="rest_name1">' + value.Restaurant + '</div>'  + '<div id="rupee">' + '₹' + "</div>" + '<div id="dish_name">' + value2.Dish + "</div>" +  '<div id="dish_price">' + value2.Price + "</div>" + '<div id="material-icons1">' + '<i class="material-icons teal-text">' + 'restaurant' + '</i>' + '</div>' + '<div id="minus">' + '<i class="material-icons teal-text">' + 'indeterminate_check_box' + '</i>' + '</div>' +'<div class="card1 card-action1">'+ '<div id="add">' + '<i class="material-icons teal-text">' + 'add_circle' + '</i>' + '</div>' +  '</div>' +'</a>'  + "</div>"  
+                 }
+	});
+				 }
+				
+				html += '</div>' 
+				
+				});
+				
+				html += '</div>'
+			for(var i=1; i<MenuList.length; ++i){	
+		$.each(value.Menus, function(key3, value3) {
+		
+	
+if(value3.Menu==MenuList[i]){
+
+if(value3.SubMenus!=="null"){
+html += '<div class="row">' + '<div class="col s4">' + '</div>' + '<div class="col s7">'
+
+$.each(value3.SubMenus, function(key4, value4) {
+html += '<nav>' + '<div class="nav-wrapper">' + '<a class="breadcrumb">' + '&nbsp;&nbsp;&nbsp;' + value3.Menu + '</a>'+ '<a class="breadcrumb">' + value4.SubMenu + '</a>'+ '</div>' + '</nav>' + '<ul class="collection">' 
+
+$.each(value4.Dishes, function(key5, value5) {
+
+					html +=   '<li class="collection-item">' + '<div>' + value5.Dish + '<a href="#!" class="secondary-content">' + '<i class="material-icons">' + 'add_circle' + '</i>'+ '</a>'  + '<a href="#!" class="secondary-content">' +  '<i class="material-icons">' + 'indeterminate_check_box' + '</i>'+ '</a>' + '</div>' + '</li>'
+				});
+				html += '</ul>'
+				
+				});
+				html += '</div>'+ '</div>'
+				
+				}
+				
+else if(value3.SubMenus=="null"){
+html += '<div class="row">' + '<div class="col s4">' + '</div>' + '<div class="col s7">' + '<nav>' + '<div class="nav-wrapper">' + '<a class="breadcrumb">' + '&nbsp;&nbsp;&nbsp;' +value3.Menu + '</a>'+ '</div>' + '</nav>' + '<ul class="collection">' 
+
+$.each(value3.Dishes, function(key6, value6) {
+
+
+					html +=   '<li class="collection-item">' + '<div>' + value6.Dish + '<a href="#!" class="secondary-content">' + '<i class="material-icons">' + 'add_circle' + '</i>'+ '</a>'  + '<a href="#!" class="secondary-content">' + '<i class="material-icons">' + 'indeterminate_check_box' + '</i>'+ '</a>' + '</div>' + '</li>'
+				});
+				html += '</ul>' + '</div>' + '</div>'
+
+				
+				}
+
+				}
+				
+				});
+				}
+				}
+			});
+                    
+		}
+    });
+   return html;
+   }
+   
+   
+   
+   
+		
+		
+		
+		</script>
+		
+		
+		
+     <!--   <script>
+		//$("#test4").prop("checked", true);
+		
+
+		var i;
+		         	
+                   $("input[name=filter]").on('change', function () {
+				   var area = $(this).val();
+				   
+				   i=area;
+				
+		
+		
+        
+                    //JQUERY DATA
+              var dmJSON="/restaurant_json/";
+              $.getJSON( dmJSON, function(data) {
+              var el = $('#dbg');
+			  
+			 
+			
+				
+			   
+			 
+              var html = '<div class="grid">' ;
+			  
+              $.each(data.results, function(key, value) {  
+			 
+              /*var tblRow = "<tr>" + "<td>" + f.id + "</td>" + "<td>" + f.user.username + "</td>" + "<td>" + f.message + "</td>" + "<td> " + f.location + "</td>" +  "<td>" + f.at + "</td>" + "</tr>"
+               $(tblRow).appendTo("#entrydata tbody");*/
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			         
+						   
+				 
+				
+                /*   html +='<div  id="car" class="card small">' + '<div align="center">' +  '<br>' + '<img src="' + value.image_path + '" align="left"  id="rest_img" alt="avatar" />'+ '<div id="rest_name">' + value.Restaurant + '</div>' + '<div id="rest_area">' + value.Area + '</div>' +  "</div>" + "</div>" +"</div>"
+                  
+                  */
+				  
+				 
+				 if(i=="All"){
+				  html += '<div class="car card small">' + '<br>' + '<img src="' + value.image_path + '" align="left"  id="rest_img" alt="avatar" />' + '<div id="rest_name">' + value.Restaurant + '</div>' + '<div id="rest_area">' + value.Area + "</div>" +  "</div>" +  "</div>" 
+                 }
+				
+				else if(value.Area==i){
+				  html += '<div class="car card small">' + '<br>' + '<img src="' + value.image_path + '" align="left"  id="rest_img" alt="avatar" />' + '<div id="rest_name">' + value.Restaurant + '</div>' + '<div id="rest_area">' + value.Area + "</div>" +  "</div>" +  "</div>" 
+                 }
+				 
+				 
+				 
+				 
+				 
+				 
+				 });
+                 el.html(html); 
+				 
+}); 
+
+                });
+				
+				
+
+            /*
+                var el = $('#dbg');
+                var data = [{
+                  "childId": "Paradise",
+                  "value": "23"
+                }, {
+                  "childId": "Bawarchi",
+                  "value": "56"
+                }, {
+                  "childId": "Swagath",
+                  "value": "78"
+                }];
+
+                var html = '<div class="row s12"/>';
+
+                $.each(data, function(key, value) {
+
+
+                  html +='<div class="card small">' +'<div align="center">' + value.childId + value.value + "</div>" + "</div>" +"</div>"
+
+                });
+
+                el.html(html);
+                */
+
+        
+        
+        </script>-->
+		
+		
+        
+
+	
+	 <style>
+        .modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: #fafafa;
+  padding: 0;
+  max-height: 100%;
+  width: 90%;
+  margin: auto;
+  overflow-y: auto;
+  border-radius: 2px;
+  will-change: top, opacity;
+}
+    
+    
+    </style>
+	
+	
+	<script>
+	$(document).ready(function(){
+    $('.collapsible').collapsible({
+      accordion : true
+    });
+  });
+  
+ 
+  
+	</script>
+	
+	<script>
+	
+	
+	$("#123").on('click', function() {
+    $(".brand-logo").hide();
+	
+	});
+	
+	$("#logo-out").on('click', function() {
+    $(".brand-logo").show();
+	
+	});
+	
+	$('#menu_modal').is(':visible', function() {
+	
+		document.getElementById('search').setAttribute('value',' ');
+		});
+		
+
+	
+	
+	
+	$('.collapsible').collapsible({
+    accordion: false, // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    onOpen: function() { alert('Open'); }, // Callback for Collapsible open
+    onClose: function() { alert('Closed'); } // Callback for Collapsible close
+  });
+  
+   
+	
+	
+	
+	
+	</script>
+	
+	 <script>
+      $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+    
+        
+          $('.modal').modal({
+      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+      opacity: .5, // Opacity of modal background
+      in_duration: 300, // Transition in duration
+      out_duration: 200, // Transition out duration
+      starting_top: '4%', // Starting top style attribute
+      ending_top: '10%', // Ending top style attribute
+      ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+        alert("Ready");
+        console.log(modal, trigger);
+      },
+      complete: function() { alert('Closed'); } // Callback for Modal close
+    }
+  );
+
+    </script>
+<script type="text/javascript">
+
+// init Isotope
+var $grid = $('.grid').isotope({
+  itemSelector: '.element-item',
+  layoutMode: 'vertical'
+});
+// filter functions
+var filterFns = {
+  // show if number is greater than 50
+  numberGreaterThan50: function() {
+    var number = $(this).find('.number').text();
+    return parseInt( number, 10 ) > 50;
+  },
+  // show if name ends with -ium
+  ium: function() {
+    var name = $(this).find('.name').text();
+    return name.match( /ium$/ );
+  }
+};
+
+// bind filter on radio button click
+$('.filters').on( 'click', 'input', function() {
+  // get filter value from input value
+  var filterValue = this.value;
+  // use filterFn if matches value
+  filterValue = filterFns[ filterValue ] || filterValue;
+  $grid.isotope({ filter: filterValue });
+});
+
+</script>
+{% endif %}
+  </body>
+</html>

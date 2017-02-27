@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block head_Restaurant %}
+{{ instance.Restaurant }} | {{ block.super }}
+{% endblock head_Restaurant %}
+
+
+ {% block restaurant_detail_link %}
+  <li><a href='{{ instance.get_absolute_url }}'>{{ instance.Restaurant }}</a></li>
+  {% endblock %}
+
+
+
+{% block content %}
+<div class='col-sm-6 col-sm-offset-3'>
+    {% if instance.Image %}
+    <img src='{{ instance.Image.url }}' class='img-responsive' />
+    {% endif %}
+<h1>{{ Restaurant }}</h1>
+
+<!-- {% if instance.read_time|time:"i" <= "01" %} < 1 minute {% else %}{{ instance.read_time|time:"i" }} minutes {% endif %} -->
+
+
+
+{% if instance.user.get_username %}
+<p>Owner: {{ instance.user.username }}</p>
+
+
+
+
+
+
+<div class='row'>
+<div class='col-sm-12 '>
+
+
+
+    <hr/>
+    <br/>
+
+    <div>
+
+        <p class='lead'>Menus</p>
+        
+        <form class="nomargin" method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
+            {{ menu_form|crispy }}
+            
+            <input type='hidden' name='restaurant_id' value='{{ instance.id }}' />
+            <input type='submit'  value='Add a Menu' name='Menu1' class='btn btn-default' />
+        </form>
+        
+       
+        
+        <hr/>
+        {% for menu in instance.menu_restaurant.all %}
+
+        <blockquote>
+          <p>{{ menu.Menu }}</p>
+         
+          <div class='menu-reply'>
+              {% for dish in menu.dish_menu.all %}
+                <blockquote>
+                <p>{{ dish.Dish }}</p>
+                <p>{{ dish.Price }}</p>
+                   {% if dish.Image %}
+                        <img src='{{ dish.Image.url }}' class='img-responsive' />{% endif %}
+                </blockquote>
+             {% endfor %}
+             
+            <form class="nomargin" method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
+                {{ dish_form|crispy }}
+                
+            <input type='hidden' name='restaurant_name' value='{{ instance.Restaurant }}' />
+                <input type='hidden' name='menu_id' value='{{ menu.id }}' />
+                
+                <input type='submit' value='Add Dish' name='Dish1' class='btn btn-default' />
+            </form>
+            
+        
+        
+        </div>
+
+        </blockquote>
+
+        <hr/>
+        {% endfor %}
+    </div>
+
+{% endif %}
+
+
+</div>
+</div>
+</div>
+
+
+{% endblock content %}

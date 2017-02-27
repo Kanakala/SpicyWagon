@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block head_Restaurant %}
+{{ instance.Restaurant }} | {{ block.super }}
+{% endblock head_Restaurant %}
+
+
+
+{% block content %}
+{{ object }}
+
+
+
+<div class='col-sm-6 col-sm-offset-3'>
+
+        
+          <p>{{ menu.content }}</p>
+          <footer>via {{ menu.user }} | {% if menu.children.count > 0 %}{{ menu.children.count }} Menu{% if menu.children.count > 1 %}s{% endif %} {% endif %} {% if request.user == menu.user %}<a href='{{ menu.get_delete_url }}'>Delete</a> {% endif %}</footer>
+          <hr/>
+          <div>
+              {% for child_menu in menu.children %}
+                <blockquote>
+                <p>{{ child_menu.content }}</p>
+                <footer>via {{ child_menu.user }} | {% if request.user == child_menu.user %}<a href='{{ child_menu.get_delete_url }}'>Delete</a>{% endif %}</footer>
+                </blockquote>
+             {% endfor %}
+             {% if request.user.is_authenticated %}
+            <form method="POST" action="."> {% csrf_token %}
+                {{ form|crispy }}
+                <input type='hidden' name='parent_id' value='{{ menu.id }}'>
+                <input type='submit' value='Reply' class='btn btn-default'>
+            </form>
+            {% else %}
+            <p>You must login to Create menu </p>
+            {% endif %}
+        </div>
+
+    
+
+        <hr/>
+</div>
+
+
+{% endblock content %}
